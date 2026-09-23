@@ -9,13 +9,19 @@ const CONTENT_DIR = path.join(process.cwd(), "content");
 const PAPERS_DIR = path.join(CONTENT_DIR, "papers");
 const PROJECTS_DIR = path.join(CONTENT_DIR, "projects");
 
-export type PaperCategory = "philosophy" | "ai-sim";
+export type PaperCategory =
+  | "philosophy"
+  | "ai-sim"
+  | "essay"
+  | "ai-safety"
+  | "ai-policy"
+  | "economics";
 
 export type PaperMeta = {
   slug: string;
   title: string;
   date: string;
-  category: PaperCategory;
+  categories: PaperCategory[];
   summary: string;
   draft?: boolean;
   readingTime: string;
@@ -49,6 +55,11 @@ function listSlugs(dir: string): string[] {
     .map((file) => file.replace(/\.md$/, ""));
 }
 
+/** `category` in frontmatter may be a single value or a list. */
+function toCategories(value: unknown): PaperCategory[] {
+  return (Array.isArray(value) ? value : [value]).filter(Boolean) as PaperCategory[];
+}
+
 const isProd = process.env.NODE_ENV === "production";
 
 function includeDraft(draft: boolean | undefined): boolean {
@@ -64,7 +75,7 @@ export function getAllPapers(): PaperMeta[] {
         slug,
         title: data.title as string,
         date: data.date as string,
-        category: data.category as PaperCategory,
+        categories: toCategories(data.category),
         summary: data.summary as string,
         draft: Boolean(data.draft),
         readingTime: readingTime(content).text,
@@ -84,7 +95,7 @@ export async function getPaperBySlug(slug: string): Promise<Paper | null> {
     slug,
     title: data.title as string,
     date: data.date as string,
-    category: data.category as PaperCategory,
+    categories: toCategories(data.category),
     summary: data.summary as string,
     draft: Boolean(data.draft),
     readingTime: readingTime(content).text,

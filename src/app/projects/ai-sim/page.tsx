@@ -61,7 +61,7 @@ function Phase({
 }
 
 export default function AiSimPage() {
-  const relatedPapers = getAllPapers().filter((p) => p.category === "ai-sim");
+  const relatedPapers = getAllPapers().filter((p) => p.categories.includes("ai-sim"));
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-16">

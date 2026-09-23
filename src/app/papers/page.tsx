@@ -8,6 +8,10 @@ export const metadata = {
 const categoryLabel: Record<string, string> = {
   philosophy: "Philosophy",
   "ai-sim": "AI Sim",
+  essay: "Essay",
+  "ai-safety": "AI Safety",
+  "ai-policy": "AI Policy",
+  economics: "Economics",
 };
 
 export default function PapersPage() {
@@ -24,10 +28,15 @@ export default function PapersPage() {
         {papers.map((paper) => (
           <li key={paper.slug} className="py-6">
             <Link href={`/papers/${paper.slug}`} className="group block">
-              <div className="flex items-center gap-3 text-xs text-zinc-500">
-                <span className="rounded-full border border-black/10 px-2 py-0.5 dark:border-white/10">
-                  {categoryLabel[paper.category] ?? paper.category}
-                </span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-zinc-500">
+                {paper.categories.map((category) => (
+                  <span
+                    key={category}
+                    className="rounded-full border border-black/10 px-2 py-0.5 dark:border-white/10"
+                  >
+                    {categoryLabel[category] ?? category}
+                  </span>
+                ))}
                 <time>{paper.date}</time>
                 <span>·</span>
                 <span>{paper.readingTime}</span>

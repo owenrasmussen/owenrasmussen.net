@@ -1,7 +1,7 @@
 ---
 title: "Safe While Competitive"
 date: "2026-09-23"
-category: "ai-sim"
+category: ["essay", "ai-safety", "ai-policy", "economics"]
 summary: "Can we win the race to AI and stay safe? An argument for tying AI scaling to efficiency requirements, so the slowdown safety testing needs comes as a byproduct instead of a sacrifice."
 ---
 

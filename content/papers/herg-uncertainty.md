@@ -3,7 +3,6 @@ title: "herg-uncertainty: A Calibrated, Applicability-Domain-Aware hERG Blocker 
 date: "2026-07-06"
 category: "ai-sim"
 summary: "A selective-prediction system for cardiac ion-channel toxicity — calibrated uncertainty plus an explicit applicability-domain check, validated across 10 phases and a genuine 3,896-compound prospective test."
-draft: true
 ---
 
 ## Abstract
